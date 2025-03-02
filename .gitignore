@@ -1,0 +1,21 @@
+# Ignore build and binary files
+x64/
+Debug/
+Release/
+*.obj
+*.exe
+*.dll
+*.lib
+*.pdb
+
+# Ignore Visual Studio-specific files
+.vs/
+*.VC.db
+*.suo
+*.user
+*.sdf
+*.filters
+
+# Ignore temporary files
+*.log
+*.tmp

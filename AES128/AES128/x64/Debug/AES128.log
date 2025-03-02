@@ -1,7 +1,0 @@
-﻿  AES128.cpp
-E:\Visual Studio\Projects\AES128\AES128\AES128.cpp(28,67): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
-E:\Visual Studio\Projects\AES128\AES128\AES128.cpp(28,67): warning C4267:         with
-E:\Visual Studio\Projects\AES128\AES128\AES128.cpp(28,67): warning C4267:         [
-E:\Visual Studio\Projects\AES128\AES128\AES128.cpp(28,67): warning C4267:             _Ty=int
-E:\Visual Studio\Projects\AES128\AES128\AES128.cpp(28,67): warning C4267:         ]
-  AES128.vcxproj -> E:\Visual Studio\Projects\AES128\x64\Debug\AES128.exe
