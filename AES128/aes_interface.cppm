@@ -15,14 +15,59 @@ export module aes_interface;
 #include <stdexcept>
 #include <cstdint>
 
-/** Alias for an 8-bit byte */
+/**
+ * @brief Dimension of the AES state matrix.
+ *
+ * AES represents each block as a 4x4 matrix of bytes.
+ */
+export constexpr size_t MATRIX_DIM = 4;
+
+/**
+ * @brief Total number of bytes in an AES block.
+ *
+ * Calculated as MATRIX_DIM * MATRIX_DIM (4×4 = 16).
+ */
+export constexpr size_t BLOCK_SIZE = MATRIX_DIM * MATRIX_DIM;
+
+/**
+ * @brief Number of encryption rounds for AES-128.
+ *
+ * AES-128 performs 10 rounds of transformation.
+ */
+export constexpr size_t NUM_ROUNDS = 10;
+
+/**
+ * @brief Total number of round keys produced during key expansion.
+ *
+ * This includes the initial key plus one round key per round.
+ */
+export constexpr size_t NUM_ROUND_KEYS = NUM_ROUNDS + 1;
+
+/** @brief Alias for an 8-bit byte. */
 export using Byte = uint8_t;
-/** A Word is an array of 4 bytes */
-export using Word = std::array<Byte, 4>;
-/** The AES state is a 4x4 matrix of bytes */
-export using State = std::array<std::array<Byte, 4>, 4>;
-/** A Key is a 4x4 matrix of bytes (same as State) */
+
+/**
+ * @brief A Word in AES.
+ *
+ * A Word is defined as an array of MATRIX_DIM bytes. It is the basic unit used in key expansion.
+ */
+export using Word = std::array<Byte, MATRIX_DIM>;
+
+/**
+ * @brief The AES state.
+ *
+ * The state is a MATRIX_DIM×MATRIX_DIM matrix of bytes used as the working block
+ * during AES encryption and decryption.
+ */
+export using State = std::array<std::array<Byte, MATRIX_DIM>, MATRIX_DIM>;
+
+/**
+ * @brief AES key type.
+ *
+ * A Key is represented the same way as the state (a 4x4 matrix of bytes).
+ */
 export using Key = State;
+
 
 /**
  * @brief AES-128 encryption and decryption class.
@@ -71,18 +116,18 @@ public:
      * @param arr The 16-byte array.
      * @return The corresponding 4x4 state matrix.
      */
-    static State ArrayToState(const std::array<Byte, 16>& arr);
+    static State ArrayToState(const std::array<Byte, BLOCK_SIZE>& arr);
 
     /**
      * @brief Converts a 4x4 state matrix into a flat 16-byte array.
      * @param state The 4x4 state matrix.
      * @return The corresponding 16-byte array.
      */
-    static std::array<Byte, 16> StateToArray(const State& state);
+    static std::array<Byte, BLOCK_SIZE> StateToArray(const State& state);
 
 private:
     Key mainKey;                           ///< The primary 16-byte key in matrix form.
-    std::array<Key, 11> roundKeys;         ///< The expanded round keys for all AES rounds.
+    std::array<Key, NUM_ROUND_KEYS> roundKeys;         ///< The expanded round keys for all AES rounds.
 
     /**
      * @brief Expands the primary key into round keys.
@@ -92,10 +137,10 @@ private:
     // Internal helper functions for key expansion and AES transformations.
     static void RotWord(Word& word);
     static void SubWord(Word& word);
-    static Byte Rcon(int round);
+    static Byte Rcon(size_t round);
     static void XORwords(Word& word1, const Word& word2);
-    static void WordForRoundKey(Word& word, const Word& wordPrev, int wordNumber);
-    static void CopyWordInKey(const Word& word, Key& key, int wordNumber);
+    static void WordForRoundKey(Word& word, const Word& wordPrev, size_t wordNumber);
+    static void CopyWordInKey(const Word& word, Key& key, size_t wordNumber);
 
     static void SubBytes(State& state);
     static void ShiftRows(State& state);

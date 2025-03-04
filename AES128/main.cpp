@@ -3,7 +3,6 @@
 import aes_interface;
 import fileio_interface;
 
-
 int main() {
     Key key;
     std::string inputFileName = "input.txt";             // Plaintext file.

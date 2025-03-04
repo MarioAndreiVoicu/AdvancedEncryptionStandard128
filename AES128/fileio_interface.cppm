@@ -15,7 +15,7 @@ import aes_interface;
 /**
  * @brief Encrypts the contents of a file.
  *
- * Reads the file in 16-byte blocks, applies PKCS#7 padding on the final block if needed,
+ * Reads the file in BLOCK_SIZE-byte blocks, applies PKCS#7 padding on the final block if needed,
  * encrypts each block using the provided AES instance, and writes the encrypted data
  * as hexadecimal values to the output file.
  *
@@ -28,7 +28,7 @@ export void EncryptFile(const std::string& inputFileName, const std::string& out
 /**
  * @brief Decrypts the contents of a file.
  *
- * Reads the file containing hexadecimal-encoded encrypted data, decrypts each 16-byte block
+ * Reads the file containing hexadecimal-encoded encrypted data, decrypts each BLOCK_SIZE-byte block
  * using the provided AES instance, removes PKCS#7 padding from the final block, and writes
  * the resulting plaintext to the output file.
  *
@@ -41,7 +41,7 @@ export void DecryptFile(const std::string& inputFileName, const std::string& out
 /**
  * @brief Reads a 16-character key from standard input.
  *
- * Prompts the user to input a key of exactly 16 characters and converts it into the
+ * Prompts the user to input a key of exactly BLOCK_SIZE characters and converts it into the
  * internal matrix format required by AES.
  *
  * @param key Output parameter to store the key in matrix form.
