@@ -10,10 +10,7 @@
 
 #include <fstream>
 #include <iomanip>
-#include <stdexcept>
 #include <iostream>
-#include <array>
-#include <vector>
 import aes_interface;
 import fileio_interface;
 

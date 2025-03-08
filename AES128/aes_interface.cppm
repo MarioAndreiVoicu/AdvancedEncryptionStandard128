@@ -12,8 +12,6 @@ export module aes_interface;
 #include <array>
 #include <string>
 #include <random>
-#include <stdexcept>
-#include <cstdint>
 
 /**
  * @brief Dimension of the AES state matrix.

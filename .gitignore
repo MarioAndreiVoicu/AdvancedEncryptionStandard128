@@ -19,3 +19,5 @@ Release/
 # Ignore temporary files
 *.log
 *.tmp
+
+packages/

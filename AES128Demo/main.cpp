@@ -5,9 +5,9 @@ import fileio_interface;
 
 int main() {
     Key key;
-    std::string inputFileName = "input.txt";             // Plaintext file.
-    std::string encryptedFileName = "encrypteddata.txt"; // Encrypted output.
-    std::string decryptedFileName = "decrypteddata.txt"; // Decrypted output.
+    std::string inputFileName = "Resources/input.txt";             // Plaintext file.
+    std::string encryptedFileName = "Resources/encryptedData.txt"; // Encrypted output.
+    std::string decryptedFileName = "Resources/decryptedData.txt"; // Decrypted output.
 
     std::cout << "Enter 1 to generate a random key, or 2 to input your key manually: ";
     std::string option;
