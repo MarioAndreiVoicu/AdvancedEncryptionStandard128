@@ -121,12 +121,12 @@
     <ClCompile Include="test_fileio.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AES128\AES128.vcxproj">
-      <Project>{c5fc1051-0c35-455f-9aba-1c078b5be196}</Project>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\AES128Lib\AES128.vcxproj">
+      <Project>{c5fc1051-0c35-455f-9aba-1c078b5be196}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
